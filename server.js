@@ -3,6 +3,7 @@ const app = express()
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const server = require('http').createServer(app)
+const cors = require('cors')
 const io = require('socket.io')(server, {cors: {
     origin: "*",
   }})
@@ -35,6 +36,7 @@ io.on('connection', (socket) => {
 })
 
 app.use(express.json());
+app.use(cors())
 
 app.use("/api", userRoute)
 
